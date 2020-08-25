@@ -38,6 +38,9 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    { src: '~/plugins/Vuelidate', ssr: false },
+    { src: '~/plugins/Mask', ssr: false },
+    { src: '~/plugins/myfilter.js' }
   ],
   /*
   ** Auto import components

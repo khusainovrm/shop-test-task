@@ -13,7 +13,9 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.0",
     "nuxt": "^2.14.0",
-    "nuxt-sass-resources-loader": "^2.0.5"
+    "nuxt-sass-resources-loader": "^2.0.5",
+    "vue-the-mask": "^0.11.1",
+    "vuelidate": "^0.7.5"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^3.1.0",

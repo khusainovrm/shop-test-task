@@ -2,7 +2,7 @@
   <div class="select-container">
     <div class="select-box">
       Сортировать по:
-      <select name="hero[]">
+      <select v-model="value" name="select">
         <option selected value="price">
           цене
         </option>
@@ -16,6 +16,14 @@
 
 <script>
 export default {
+  data: () => ({
+    value: 'price'
+  }),
+  watch: {
+    value () {
+      this.$store.dispatch('sort/setSort', this.value)
+    }
+  }
 
 }
 </script>
@@ -50,6 +58,11 @@ export default {
     option{
       font-size: 14px;
       line-height: 18px;
+      background: #FFFFFF;
+      border:none;
+      /* card-bs */
+      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
     }
   }
 }

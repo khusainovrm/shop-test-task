@@ -2,14 +2,10 @@
   <div class="sidebar">
     <h1>Каталог</h1>
     <div class="category-container">
-      <div class="category">
-        <p>Рюкзак</p>
-      </div>
-      <div class="category">
-        Футболки
-      </div>
-      <div class="category">
-        Рубашки
+      <div v-for="category in categories" :key="category.id" class="category" @click="chooseCategory(category.id)">
+        <p :class="{active:getCategory(category.id)}">
+          {{ category.name }}
+        </p>
       </div>
     </div>
   </div>
@@ -17,7 +13,27 @@
 
 <script>
 export default {
-
+  async fetch () {
+    const { data } = await this.$axios.get('http://front-test.idalite.com/api/product-category')
+    this.categories = data
+  },
+  data: () => ({
+    categories: []
+  }),
+  computed: {
+    isActive (id) {
+      const categoryId = this.$store.getters['selectedCategory/selectedCategory']
+      return categoryId === id
+    }
+  },
+  methods: {
+    chooseCategory (id) {
+      this.$store.dispatch('selectedCategory/selectedCategory', id)
+    },
+    getCategory (id) {
+      return this.$store.getters['selectedCategory/selectedCategory'] === id
+    }
+  }
 }
 </script>
 
@@ -65,6 +81,22 @@ export default {
 
       &:hover{
         cursor: pointer;
+      }
+
+      p {
+        /* grey-light */
+        color: #959DAD;
+
+        &:hover{
+          /* grey */
+          color: #59606D;
+        }
+      }
+
+      p.active {
+        /* black */
+        color: #1F1F1F;
+        text-decoration-line: underline;
       }
     }
   }
