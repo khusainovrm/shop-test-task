@@ -3,9 +3,11 @@
     <h1>Каталог</h1>
     <div class="category-container">
       <div v-for="category in categories" :key="category.id" class="category" @click="chooseCategory(category.id)">
-        <p :class="{active:getCategory(category.id)}">
-          {{ category.name }}
-        </p>
+        <nuxt-link :to="'/category/' + category.id">
+          <p :class="{active:getCategory(category.id)}">
+            {{ category.name }}
+          </p>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -83,6 +85,10 @@ export default {
         cursor: pointer;
       }
 
+    a {
+      color: #000 !important;
+      text-decoration: none;
+
       p {
         /* grey-light */
         color: #959DAD;
@@ -98,6 +104,8 @@ export default {
         color: #1F1F1F;
         text-decoration-line: underline;
       }
+    }
+
     }
   }
 }

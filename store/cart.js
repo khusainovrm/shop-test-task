@@ -38,6 +38,9 @@ export const mutations = {
     state.quantityOfChosenGoods = []
   },
   removeProductFromCart (state, additionalId) {
+    let products = JSON.parse(localStorage.getItem('products')) || []
+    products = products.filter(product => product.additionalId !== additionalId)
+    localStorage.setItem('products', JSON.stringify(products))
     state.quantityOfChosenGoods = state.quantityOfChosenGoods.filter(product => product.additionalId !== additionalId)
   }
 }
